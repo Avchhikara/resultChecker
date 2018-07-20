@@ -1,0 +1,2 @@
+Here is a simple python script which scrolls through the Result declaration page of DCRUST, Murthal and tell whether the result has been declared or not. Right now, it works for only 2nd semester students but will be developed for all the semesters further..
+All suggestions are warmly welcome!
