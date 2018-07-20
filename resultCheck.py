@@ -6,13 +6,13 @@ import ssl
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-print("Welcome to the program which shows the links on a web page")
+print("Welcome to the Result Checker for 2nd Semester")
 
 #taking the semester in consideration
-sem = input('Enter your Semester-')
+#sem = input('Enter your Semester-')
 #to set proper length of the semester string to be compared
-if len(sem)==1:
-    sem = '0'+sem
+#if len(sem)==1:
+#    sem = '0'+sem
 
 #taking branch in consideration
 def getBranch(b):
@@ -39,7 +39,7 @@ def getBranch(b):
 branch = input('Enter your branch(Short form only like CSE, ECE etc): ');
 #Now, converting branch to standard format as specified on the webpage
 branch = getBranch(branch)
-print(branch)
+#print(branch)
 #sending the get request to the server
 url = 'https://www.dcrustedp.in/show_chart.php';
 html = urllib.request.urlopen(url, context=ctx).read()
@@ -47,22 +47,22 @@ soup = BeautifulSoup(html, 'html.parser')
 #getting all <td> tags present on the page
 tags = soup('td')
 flag = 0
-out = '\n\nBranch not found\n\n'
+out = '\n\n\tBranch not found\n\n'
 
 for tag in tags:
     #working along the vertical side of table
     if tag.contents[0] == branch and flag!=1:
-        print('Branch found')
+        #print('Branch found')
         flag = 1
         continue;
     if flag==1:
         flag = 0
         #now, working on the horizontal side of table
         if tag.contents[0]!='X':
-            out = "\n\nResult Declared\n\n"
+            out = "\n\n\tResult DECLARED!!\n\n"
             break
         else:
-            out = "\n\nResult NOT Declared Yet\n\n"
+            out = "\n\n\tResult NOT Declared Yet\n\n"
             break
 
 print(out)
